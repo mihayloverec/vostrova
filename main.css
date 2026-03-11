@@ -1,0 +1,1011 @@
+/* =========================================
+   OSTROV (VOSTROVA LLC) - Glassmorphism UI
+   ========================================= */
+
+/* Site Header (Glassmorphism) */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* Logo */
+.header-logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px rgba(46, 128, 236, 0.5);
+}
+
+.header-logo:hover {
+    color: var(--color-accent);
+}
+
+/* Desktop Navigation */
+.main-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #fff;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px var(--color-accent);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Right Actions Area */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.4rem 0.8rem;
+}
+
+.lang-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 0.15rem 0.3rem;
+}
+
+.lang-link:hover {
+    color: #fff;
+}
+
+.lang-link.active {
+    color: #2E80EC;
+}
+
+.lang-divider {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    user-select: none;
+}
+
+:root {
+    --color-text-main: #FFFFFF;
+    --color-text-muted: rgba(255, 255, 255, 0.7);
+    --color-accent: #2E80EC;
+    /* Deep Ocean Blue Accent */
+    --color-glass-bg: rgba(0, 0, 0, 0.35);
+    /* Translucent dark */
+    --color-glass-border: rgba(255, 255, 255, 0.1);
+
+    --font-main: 'Montserrat', sans-serif;
+
+    --spacing-section: 6rem;
+    --spacing-container: 2rem;
+    --header-height: 80px;
+
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Mobile Toggle (Hamburger) */
+.mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.mobile-toggle span {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all 0.3s linear;
+    transform-origin: 1px;
+}
+
+/* Mobile Toggle Animation State */
+.mobile-toggle.is-active span:nth-child(1) {
+    transform: rotate(45deg);
+}
+.mobile-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.mobile-toggle.is-active span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+/* Mobile Navigation Panel */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 99;
+}
+
+.mobile-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-link {
+    font-size: 2rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    text-shadow: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.mobile-link:hover,
+.mobile-link.active {
+    color: #fff;
+    text-shadow: 0 0 15px var(--color-accent);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background-color: #050505;
+    /* Fallback */
+}
+
+/* Sticky scroll styles moved to bottom of file */
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.1;
+    font-weight: 800;
+    /* ExtraBold */
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+p,
+li,
+a {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+a {
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition: var(--transition-base);
+}
+
+/* Primary Button Style */
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: rgba(46, 128, 236, 0.2);
+    border: 1px solid var(--color-accent);
+    border-radius: 12px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(46, 128, 236, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:focus {
+    outline: none;
+}
+
+.btn-primary:hover {
+    background: var(--color-accent);
+    color: #fff;
+    box-shadow: 0 0 25px rgba(46, 128, 236, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(46, 128, 236, 0.4);
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-container);
+}
+
+.section {
+    min-height: 100vh;
+    padding: 0;
+    /* Padding is now on .section-content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Screen 1: Hero */
+.screen-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hero-center {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 10vh;
+    /* Сдвинем чуть вниз для центрирования */
+}
+
+.hero-title {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 900;
+    /* Black */
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+
+    /* Эффект глубокого синего свечения из макета OSTROV */
+    text-shadow:
+        0 0 10px rgba(46, 128, 236, 0.8),
+        0 0 25px rgba(46, 128, 236, 0.6),
+        0 0 50px rgba(46, 128, 236, 0.4),
+        0 0 80px rgba(46, 128, 236, 0.2),
+        0 0 120px rgba(46, 128, 236, 0.1);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    /* Very wide tracking */
+    color: var(--color-text-muted);
+}
+
+.hero-bottom {
+    text-align: center;
+    padding-bottom: 2rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Common Section Styles */
+.section-header {
+    margin-bottom: 3rem;
+}
+
+.section-header.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-header.center .section-description {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+
+    /* Умеренный воздушный синий неон для внутренних заголовков */
+    text-shadow:
+        0 0 10px rgba(46, 128, 236, 0.7),
+        0 0 25px rgba(46, 128, 236, 0.5),
+        0 0 50px rgba(46, 128, 236, 0.3),
+        0 0 80px rgba(46, 128, 236, 0.15);
+}
+
+.section-divider {
+    width: 80px;
+    height: 4px;
+    background: var(--color-accent);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 10px var(--color-accent);
+    /* Neon glow */
+}
+
+.section-description {
+    font-size: 1.5rem;
+    font-weight: 700;
+    max-width: 800px;
+    margin-bottom: 3rem;
+}
+
+.mt-4 {
+    margin-top: 4rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+/* Grid Layouts */
+.glass-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: stretch;
+}
+
+/* Used for CREATE, GROW, UNITE to swap sides */
+.layout-list-card {
+    grid-template-columns: 1fr 1.2fr;
+}
+
+.layout-card-list {
+    grid-template-columns: 1.2fr 1fr;
+}
+
+/* Glass Card */
+.glass-card {
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Dual Column inside Glass Card */
+.glass-card.dual-col {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.dual-col .col-left,
+.dual-col .col-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.dual-col p {
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.vertical-divider {
+    width: 2px;
+    background: var(--color-accent);
+    opacity: 0.7;
+    box-shadow: 0 0 8px var(--color-accent);
+}
+
+/* Lists */
+.numbered-list,
+.bullet-list,
+.plain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Bullet markers (glowing spheres) */
+.list-column {
+    display: flex;
+    align-items: center;
+    /* Center list vertically beside card */
+}
+
+.bullet-list li {
+    position: relative;
+    padding-left: 2.5rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px var(--color-accent), inset 0 0 5px #fff;
+}
+
+.plain-list li {
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-glass-border);
+}
+
+.plain-list li:last-child {
+    border-bottom: none;
+}
+
+/* Numbered specific */
+.numbered-list li {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.numbered-list .num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    line-height: 1;
+    text-shadow: 0 0 15px rgba(0, 163, 255, 0.4);
+}
+
+.numbered-list p {
+    font-size: 1.15rem;
+}
+
+/* Values & Contacts components */
+.card-title {
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+}
+
+.glass-banner {
+    background: linear-gradient(135deg, rgba(0, 163, 255, 0.2), rgba(0, 0, 0, 0.4));
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--color-accent);
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.glass-banner h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-row {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.contact-label {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+}
+
+.contact-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.contact-value:hover {
+    color: var(--color-accent);
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Messenger Icons */
+.messenger-icons {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-glass-border);
+}
+
+.messenger-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text-muted);
+    transition: all var(--transition-base);
+}
+
+.messenger-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.messenger-icon:hover {
+    color: var(--color-accent);
+    background: rgba(46, 128, 236, 0.15);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 128, 236, 0.3);
+}
+
+/* Animations (Intersection Observer) */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+/* Add this class via JS to trigger animations */
+.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.delay-1 {
+    transition-delay: 0.1s;
+}
+
+.delay-2 {
+    transition-delay: 0.2s;
+}
+
+.delay-3 {
+    transition-delay: 0.3s;
+}
+
+/* Responsive / Adaptability */
+@media (max-width: 1100px) {
+    .main-nav {
+        gap: 1.2rem;
+    }
+    .nav-link {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+
+    .glass-grid-2 {
+        gap: 2rem;
+    }
+
+    .glass-card {
+        padding: 2rem;
+    }
+}
+
+/* =========================================
+   Contact Form Popup (Modal)
+   ========================================= */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    padding: 3rem 2.5rem;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.popup-overlay.is-active .popup-content {
+    transform: translateY(0) scale(1);
+}
+
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.popup-close:hover {
+    color: #fff;
+}
+
+.popup-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+.popup-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    color: #fff;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-textarea {
+    resize: none;
+    min-height: 100px;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-status {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    min-height: 20px;
+}
+
+.status-success {
+    color: #4CAF50;
+}
+
+.status-error {
+    color: #F44336;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-section: 4rem;
+        --spacing-container: 1.5rem;
+    }
+
+    /* Stack grid columns on mobile */
+    .glass-grid-2,
+    .layout-list-card,
+    .layout-card-list {
+        grid-template-columns: 1fr;
+    }
+
+    .glass-card.dual-col {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .vertical-divider {
+        width: 100%;
+        height: 2px;
+        margin: 1rem 0;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .section-description {
+        font-size: 1.25rem;
+    }
+
+    .list-column {
+        order: -1;
+        /* Move list above card on mobile optionally */
+        margin-bottom: 2rem;
+    }
+}
+
+/* =========================================
+   STANDARD LAYOUT (NO STICKY OVERLAP)
+   ========================================= */
+
+#sticky-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Секции идут друг за другом как обычно */
+.section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.section-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Усиленный вертикальный градиент: чёрный → полупрозрачный → чёрный */
+    background:
+        linear-gradient(to bottom,
+            rgba(5, 5, 5, 1) 0%,
+            rgba(5, 5, 5, 0.85) 8%,
+            rgba(10, 20, 40, 0.5) 35%,
+            rgba(10, 20, 40, 0.5) 65%,
+            rgba(5, 5, 5, 0.85) 92%,
+            rgba(5, 5, 5, 1) 100%);
+    z-index: 1;
+}
+
+.section-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+}
+
+/* Floating Contact Button */
+.floating-contact-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(46, 128, 236, 0.4), 0 0 20px rgba(46, 128, 236, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 999; /* Выше всего контента, но под попапом */
+    transition: all 0.3s ease;
+    animation: float-pulse 2s infinite ease-in-out;
+}
+
+.floating-contact-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 6px 20px rgba(46, 128, 236, 0.6), 0 0 30px rgba(46, 128, 236, 0.4);
+    animation: none; /* Отключаем пульсацию при наведении */
+}
+
+.floating-contact-btn svg {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.floating-contact-btn:hover svg {
+    transform: scale(1.1);
+}
+
+/* Анимация пульсации для привлечения внимания */
+@keyframes float-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 128, 236, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(46, 128, 236, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 128, 236, 0);
+    }
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 768px) {
+    .header-container {
+        gap: 1rem;
+    }
+    .header-actions {
+        margin-left: auto;
+    }
+
+    .header-logo {
+        font-size: 1.1rem;
+    }
+
+    .floating-contact-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+    .floating-contact-btn svg {
+        width: 26px;
+        height: 26px;
+    }
+}
