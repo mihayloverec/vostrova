@@ -368,7 +368,7 @@ a {
 
 /* Common Section Styles */
 .section-header {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .section-header.center {
@@ -410,11 +410,11 @@ a {
     font-size: 1.5rem;
     font-weight: 700;
     max-width: 800px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .mt-4 {
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 .mt-2 {
@@ -826,6 +826,22 @@ a {
     :root {
         --spacing-section: 4rem;
         --spacing-container: 1.5rem;
+    }
+
+    /* Сглаживаем огромные десктопные отступы */
+    .mt-4 {
+        margin-top: 2rem !important;
+    }
+
+    /* Уменьшаем расстояние между карточками (gap) */
+    .glass-grid-2 {
+        gap: 2rem !important;
+    }
+
+    /* Уменьшаем внутренние падинги карточек */
+    .glass-card, .glass-banner {
+        padding: 1.5rem;
+        border-radius: 16px;
     }
 
     /* Stack grid columns on mobile */
