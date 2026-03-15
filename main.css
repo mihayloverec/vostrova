@@ -468,6 +468,7 @@ a {
 .dual-col p {
     font-size: 1.1rem;
     line-height: 1.4;
+    text-align: left;
 }
 
 .vertical-divider {
@@ -485,6 +486,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    text-align: left;
 }
 
 /* Bullet markers (glowing spheres) */
@@ -568,6 +570,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    text-align: left;
 }
 
 .contact-label {
