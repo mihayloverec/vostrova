@@ -25,6 +25,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
     revealElements.forEach(el => observer.observe(el));
 
+    // --- 1.1 Lazy background images ---
+    const lazyBgElements = document.querySelectorAll('.lazy-bg[data-bg]');
+    const loadBackground = (el) => {
+        const bg = el.getAttribute('data-bg');
+        if (!bg) return;
+        el.style.backgroundImage = `url('${bg}')`;
+        el.removeAttribute('data-bg');
+    };
+
+    if ('IntersectionObserver' in window) {
+        const bgObserver = new IntersectionObserver((entries, bgObserverInstance) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadBackground(entry.target);
+                    bgObserverInstance.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '200px 0px', threshold: 0.01 });
+
+        lazyBgElements.forEach(el => bgObserver.observe(el));
+    } else {
+        lazyBgElements.forEach(loadBackground);
+    }
+
     // --- 2. Mobile Menu Toggle ---
     const mobileToggle = document.querySelector('.mobile-toggle');
     const mobileNav = document.querySelector('.mobile-nav');
@@ -87,6 +111,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 closePopup();
             }
         });
+    }
+
+    // --- 3.1 Lazy load hero video ---
+    const heroVideo = document.querySelector('.hero-video[data-src]');
+    const loadHeroVideo = () => {
+        if (!heroVideo) return;
+        const src = heroVideo.getAttribute('data-src');
+        if (!src) return;
+        heroVideo.src = src;
+        heroVideo.removeAttribute('data-src');
+        heroVideo.load();
+        const playPromise = heroVideo.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+        }
+    };
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadHeroVideo, { timeout: 2000 });
+    } else {
+        setTimeout(loadHeroVideo, 1200);
     }
 
     // Close on Escape key

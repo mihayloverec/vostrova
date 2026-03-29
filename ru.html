@@ -42,10 +42,10 @@
     <link rel="canonical" href="https://ostrov.agency/ru">
 
     <!-- Hreflang -->
-    <link rel="alternate" hreflang="en" href="en">
-    <link rel="alternate" hreflang="vi" href="vn">
-    <link rel="alternate" hreflang="ru" href="ru">
-    <link rel="alternate" hreflang="x-default" href="en">
+    <link rel="alternate" hreflang="en" href="https://ostrov.agency/en">
+    <link rel="alternate" hreflang="vi" href="https://ostrov.agency/vn">
+    <link rel="alternate" hreflang="ru" href="https://ostrov.agency/ru">
+    <link rel="alternate" hreflang="x-default" href="https://ostrov.agency/en">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -129,8 +129,8 @@
         <section class="section screen-hero">
             <!-- Background Video specifically for Hero -->
             <div class="section-bg">
-                <video playsinline autoplay muted loop preload="metadata" poster="images/pexels-fotios-photos-734973.webp"
-                    src="images/1250091-optimized.mp4"></video>
+                <video class="hero-video" playsinline autoplay muted loop preload="none"
+                    poster="images/pexels-fotios-photos-734973.webp" data-src="images/1250091-optimized.mp4"></video>
                 <div class="video-overlay"></div>
             </div>
 
@@ -147,7 +147,7 @@
 
         <!-- Screen 2: О НАС -->
         <section id="about" class="section screen-about">
-            <div class="section-bg" style="background-image: url('images/pexels-fotios-photos-734973.webp');">
+            <div class="section-bg lazy-bg" data-bg="images/pexels-fotios-photos-734973.webp">
                 <div class="video-overlay"></div>
             </div>
             <div class="section-content container">
@@ -212,7 +212,7 @@
 
         <!-- Screen 3: МЫСЛИТЬ -->
         <section id="think" class="section screen-think">
-            <div class="section-bg" style="background-image: url('images/pexels-gsn-travel-28277459.webp');">
+            <div class="section-bg lazy-bg" data-bg="images/pexels-gsn-travel-28277459.webp">
                 <div class="video-overlay"></div>
             </div>
             <div class="section-content container">
@@ -252,7 +252,7 @@
 
         <!-- Screen 4: СОЗДАВАТЬ -->
         <section id="create" class="section screen-create">
-            <div class="section-bg" style="background-image: url('images/pexels-lachlan-ross-6510288.webp');">
+            <div class="section-bg lazy-bg" data-bg="images/pexels-lachlan-ross-6510288.webp">
                 <div class="video-overlay"></div>
             </div>
             <div class="section-content container">
@@ -293,7 +293,7 @@
 
         <!-- Screen 5: ОБЪЕДИНЯТЬ -->
         <section id="unite" class="section screen-unite">
-            <div class="section-bg" style="background-image: url('images/pexels-magda-ehlers-pexels-988526.webp');">
+            <div class="section-bg lazy-bg" data-bg="images/pexels-magda-ehlers-pexels-988526.webp">
                 <div class="video-overlay"></div>
             </div>
             <div class="section-content container">
@@ -335,7 +335,7 @@
 
         <!-- Screen 6: РАСТИ -->
         <section id="grow" class="section screen-grow">
-            <div class="section-bg" style="background-image: url('images/pexels-mikhail-nilov-6965542.webp');">
+            <div class="section-bg lazy-bg" data-bg="images/pexels-mikhail-nilov-6965542.webp">
                 <div class="video-overlay"></div>
             </div>
             <div class="section-content container">
@@ -366,7 +366,7 @@
 
         <!-- Screen 7: WIN-WIN -->
         <section id="win-win" class="section screen-values">
-            <div class="section-bg" style="background-image: url('images/pexels-pixabay-235988.webp');">
+            <div class="section-bg lazy-bg" data-bg="images/pexels-pixabay-235988.webp">
                 <div class="video-overlay"></div>
             </div>
             <div class="section-content container">
@@ -403,8 +403,7 @@
 
         <!-- Screen 8: КОНТАКТЫ -->
         <section id="contacts" class="section screen-contacts">
-            <div class="section-bg"
-                style="background-image: url('images/pexels-roberto-carrafa-2159534-3826149.webp');">
+            <div class="section-bg lazy-bg" data-bg="images/pexels-roberto-carrafa-2159534-3826149.webp">
                 <div class="video-overlay"></div>
             </div>
             <div class="section-content container">
