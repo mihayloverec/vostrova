@@ -31,14 +31,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap"
         rel="stylesheet">
 
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
     <!-- CSS -->
+    <link rel="preload" href="main.css" as="style">
     <link rel="stylesheet" href="main.css">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://ostrov.agency/en">
 
     <!-- Hreflang -->
     <link rel="alternate" hreflang="en" href="en">
     <link rel="alternate" hreflang="vi" href="vn">
     <link rel="alternate" hreflang="ru" href="ru">
     <link rel="alternate" hreflang="x-default" href="en">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "OSTROV",
+            "url": "https://ostrov.agency/en",
+            "email": "inoostrovltd@gmail.com",
+            "telephone": "+84 33 37 88 841",
+            "contactPoint": [
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "+84 33 37 88 841",
+                    "contactType": "sales",
+                    "availableLanguage": [
+                        "English",
+                        "Russian",
+                        "Vietnamese"
+                    ]
+                }
+            ]
+        }
+    </script>
 </head>
 
 <body>
@@ -98,7 +129,8 @@
         <section class="section screen-hero">
             <!-- Background Video specifically for Hero -->
             <div class="section-bg">
-                <video playsinline autoplay muted loop src="images/1250091-optimized.mp4"></video>
+                <video playsinline autoplay muted loop preload="metadata" poster="images/pexels-fotios-photos-734973.webp"
+                    src="images/1250091-optimized.mp4"></video>
                 <div class="video-overlay"></div>
             </div>
 

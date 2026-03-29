@@ -89,6 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popupOverlay && popupOverlay.classList.contains('is-active')) {
+            closePopup();
+        }
+    });
+
     // Handle Form Submit
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
